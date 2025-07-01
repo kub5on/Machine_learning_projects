@@ -8,6 +8,7 @@ from sklearn.neighbors import KNeighborsRegressor
 from sklearn.ensemble import RandomForestRegressor
 from xgboost import XGBRegressor
 from sklearn.preprocessing import StandardScaler
+from sklearn.metrics import r2_score, mean_absolute_error, mean_squared_error
 
 
 bitcoin = pd.read_csv('bitcoin.csv', parse_dates=['date'], dayfirst=True, index_col='date')
@@ -45,13 +46,35 @@ models = {
     'RandomForest': RandomForestRegressor(max_depth=4, random_state=42)
 }
 
-# results = {name: {"R²": [], "MAE": [], "RMSE": []} for name in models}
-# predictions = {name: [] for name in models}
-# scaler = StandardScaler()
+results = {name: {"R²": [], "MAE": [], "RMSE": []} for name in models}
+predictions = {name: [] for name in models}
+scaler = StandardScaler()
 #
-# # Trenowanie modeli i ewaluacja
-# for name, model in models.items():
-#     for i, (train_index, test_index) in enumerate(ts_split.split(X)):
-#         # Podział na dane treningowe i testowe
-#         X_train, X_test = X.iloc[train_index], X.iloc[test_index]
-#         y_train, y_test = y.iloc[train_index], y.iloc[test_index]
+# Trenowanie modeli i ewaluacja
+for name, model in models.items():
+
+    for i, (train_index, test_index) in enumerate(ts_split.split(X)):
+        # Podział na dane treningowe i testowe
+        X_train, X_test = X.iloc[train_index], X.iloc[test_index]
+        y_train, y_test = y.iloc[train_index], y.iloc[test_index]
+
+        if i == 0:
+            X_train_scaled = scaler.fit_transform(X_train)
+            continue
+        else:
+            X_train_scaled = scaler.transform(X_train)
+
+        X_test_scaled = scaler.transform(X_test)
+
+        model.fit(X_train_scaled, y_train)
+        y_pred = model.predict(X_test_scaled)
+
+        results[name]["R²"].append(r2_score(y_test, y_pred))
+        results[name]["MAE"].append(mean_absolute_error(y_test, y_pred))
+        results[name]["RMSE"].append(np.sqrt(mean_squared_error(y_test, y_pred)))
+        predictions[name].append((bitcoin.index[test_index], y_pred))
+
+final_results = {name: {metric: np.mean(values) for metric, values in metrics.items()} for name, metrics in results.items()}
+results_df = pd.DataFrame(final_results).T
+
+
