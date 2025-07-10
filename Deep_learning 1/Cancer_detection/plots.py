@@ -27,6 +27,6 @@ import shap
 """SHAP summary_plot"""
 explainer = shap.Explainer(model, X_train)
 shap_values = explainer(X_test[:100])
-shap.summary_plot(shap_values, features=X_test[:100], feature_names=X.columns)
+shap.summary_plot(shap_values, features=X_test[:100], feature_names=X.columns, show=False)
 plt.savefig("shap_summary_plot.png")
-plt.close()
+

@@ -26,22 +26,22 @@ X_train = scaler.fit_transform(X_train)
 X_test = scaler.transform(X_test)
 
 """tworzenie modelu deep learning"""
-model = tf.keras.Sequential([
-    tf.keras.layers.Dense(256, activation='relu', input_shape=(X_train.shape[1],)),
-    tf.keras.layers.Dense(128, activation='relu'),
-    tf.keras.layers.Dense(64, activation='relu'),
-    tf.keras.layers.Dense(1, activation='sigmoid')
-])
-
 # model = tf.keras.Sequential([
 #     tf.keras.layers.Dense(256, activation='relu', input_shape=(X_train.shape[1],)),
-#     tf.keras.layers.Dropout(0.4),
 #     tf.keras.layers.Dense(128, activation='relu'),
-#     tf.keras.layers.Dropout(0.3),
 #     tf.keras.layers.Dense(64, activation='relu'),
-#     tf.keras.layers.Dropout(0.2),
 #     tf.keras.layers.Dense(1, activation='sigmoid')
 # ])
+
+model = tf.keras.Sequential([
+    tf.keras.layers.Dense(256, activation='relu', input_shape=(X_train.shape[1],)),
+    tf.keras.layers.Dropout(0.4),
+    tf.keras.layers.Dense(128, activation='relu'),
+    tf.keras.layers.Dropout(0.3),
+    tf.keras.layers.Dense(64, activation='relu'),
+    tf.keras.layers.Dropout(0.2),
+    tf.keras.layers.Dense(1, activation='sigmoid')
+])
 
 """kompilacja modelu"""
 model.compile(
