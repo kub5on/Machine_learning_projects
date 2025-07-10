@@ -61,15 +61,15 @@ python wizualizacje.py
 ```
 
 3. Po uruchomieniu skrypty wygenerują:
-- `predicted_vs_real.png` — wykresy rzeczywiste vs przewidywane
-- `Wykres_cech_xgboost.png` — wykres ważności cech
-- `wykres_korelacji.png` — macierz korelacji
-- `histogram.png` — histogram ceny
-- `wykres_pudelkowy.png` — wykres pudełkowy (jakość vs cena)
-- `powierzchnia_vs_cena.png` — wykres punktowy (powierzchnia vs cena)
-- `cena.png` — wykres pudełkowy ceny
-- `sas_vs_cena.png` — wykres pudełkowy (sąsiedztwo vs cena)
-- `histogram_ceny_log.png` — histogram logarytmowanej ceny
+- `predicted_vs_real.png` - wykresy rzeczywiste vs przewidywane
+- `Wykres_cech_xgboost.png` - wykres ważności cech
+- `wykres_korelacji.png` - macierz korelacji
+- `histogram.png` - histogram ceny
+- `wykres_pudelkowy.png` - wykres pudełkowy (jakość vs cena)
+- `powierzchnia_vs_cena.png` - wykres punktowy (powierzchnia vs cena)
+- `cena.png` - wykres pudełkowy ceny
+- `sas_vs_cena.png` - wykres pudełkowy (sąsiedztwo vs cena)
+- `histogram_ceny_log.png` - histogram logarytmowanej ceny
 
 Wyniki metryk modeli wyświetlą się również w konsoli w tabeli `results_df`.
 
