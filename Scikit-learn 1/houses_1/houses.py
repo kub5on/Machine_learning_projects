@@ -92,17 +92,18 @@ for name, model in models.items():
         coefficients[name] = model.coef_
 
 results_df = pd.DataFrame(metrics)
+print(results_df)
 
 importances = models["XGBoost"].feature_importances_
 
 """Wykres ważności cech"""
-# plt.bar(range(len(importances)), importances)
-# plt.xticks(range(len(importances)), [X_train.columns[i] for i in range(len(importances))], rotation=42, fontsize=6)
-# plt.title("Wykres ważności cech z modelu XGBoost")
-# plt.xlabel('Cechy')
-# plt.ylabel('Importances')
-# plt.savefig('Wykres_cech_xgboost')
-# plt.show()
+plt.bar(range(len(importances)), importances)
+plt.xticks(range(len(importances)), [X_train.columns[i] for i in range(len(importances))], rotation=42, fontsize=6)
+plt.title("Wykres ważności cech z modelu XGBoost")
+plt.xlabel('Cechy')
+plt.ylabel('Importances')
+plt.savefig('Wykres_cech_xgboost')
+plt.show()
 
 
 def plot_model_vs_prediction(ax, model_name, y_true, y_pred):
