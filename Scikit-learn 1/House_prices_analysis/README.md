@@ -56,8 +56,8 @@ pip install -r requirements.txt
 2. Uruchom skrypt główny (przygotowanie danych i modele) oraz skrypt do wizualizacji:
 
 ```bash
-python nazwa_skryptu.py
-python wizualizacje.py
+python houses.py
+python wykresy.py
 ```
 
 3. Po uruchomieniu skrypty wygenerują:

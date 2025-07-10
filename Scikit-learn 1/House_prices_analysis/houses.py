@@ -93,6 +93,7 @@ for name, model in models.items():
 
 results_df = pd.DataFrame(metrics)
 print(results_df)
+input("Naciśnij Enter, aby zakończyć...")
 
 importances = models["XGBoost"].feature_importances_
 
