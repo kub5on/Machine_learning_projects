@@ -95,7 +95,7 @@ plt.figure(figsize=(8,6))
 for model_name, model in models.items():
     plot_roc_curve(model, X_test, y_test, model_name)
 
-plt.plot([0, 1], [0, 1], color='red', linestyle='--')
+plt.plot([0, 1], [0, 1], color='yellow', linestyle='--')
 plt.xlabel("FPR")
 plt.ylabel("TPR")
 plt.title("Krzywa ROC dla każdego z modeli")
