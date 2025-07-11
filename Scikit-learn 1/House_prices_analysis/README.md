@@ -2,7 +2,7 @@
 # Analiza i predykcja cen domów
 
 Ten projekt pokazuje kompletny pipeline analizy danych i budowania modeli regresyjnych do przewidywania cen domów na podstawie danych z pliku `houses.csv`.
-Wykorzystuje popularne biblioteki Pythona: **pandas, scikit-learn, xgboost, matplotlib, seaborn**.
+Wykorzystuje następujące biblioteki Pythona: **pandas, scikit-learn, xgboost, matplotlib, seaborn**.
 
 ---
 
@@ -78,7 +78,7 @@ Wyniki metryk modeli wyświetlą się również w konsoli w tabeli `results_df`.
 ## Struktura kodu
 
 - Wczytywanie i kopiowanie danych
-- Eksploracyjna analiza danych — wykresy
+- Eksploracyjna analiza danych - wykresy
 - Imputacja braków
 - Usuwanie wartości odstających
 - Kodowanie zmiennych kategorycznych
@@ -101,7 +101,3 @@ Wyniki metryk modeli wyświetlą się również w konsoli w tabeli `results_df`.
 - matplotlib
 
 ---
-
-## Kontakt
-
-W razie pytań lub sugestii — zapraszam do kontaktu.
