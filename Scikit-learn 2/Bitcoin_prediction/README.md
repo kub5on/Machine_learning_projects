@@ -1,1 +1,1 @@
-### Bitcoin prices prediction project
+## Bitcoin prices prediction project
