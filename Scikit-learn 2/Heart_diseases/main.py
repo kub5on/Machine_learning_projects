@@ -12,6 +12,9 @@ import h2o
 from h2o.automl import H2OAutoML
 from sklearn.metrics import accuracy_score
 import shap
+import matplotlib
+import matplotlib.pyplot as plt
+matplotlib.use("Agg")
 
 
 def build_pipeline(model):
@@ -113,6 +116,28 @@ accuracy_df = pd.DataFrame(accuracy_scores.items(), columns=["Model", "Accuracy"
 
 """wartości SHAP"""
 best_model = random_search_rf.best_estimator_.named_steps['classifier']
-explainer = shap.TreeExplainer(best_model)
+explainer = shap.TreeExplainer(best_model, X_test)
 
-shap_values = explainer(X_test)
+shap_values = explainer(X_test[y_test == 1])
+shap.summary_plot(shap_values[:, :, 0], X_test[y_test == 1], show=False)
+plt.savefig("shap_summary.png", bbox_inches="tight")
+plt.close()
+
+shap_values = explainer(X_test[y_test == 1])
+shap.summary_plot(shap_values[:, :, 1], X_test[y_test == 1], show=False)
+plt.savefig("shap_summary_1.png", bbox_inches="tight")
+plt.close()
+
+with open("interpretacja_shap.txt", "w") as f:
+    f.write(
+                'Wykres przedstawia wpływ poszczególnych cech na wynik predykcji modelu.\n'
+                'Każda kropka to jedna obserwacja; oś X to wartość SHAP, czyli wpływ cechy na wynik,\n' 
+                'a kolor oznacza wartość cechy (od niskich – niebieski, do wysokich – czerwony).\n\n'
+                
+                'Największy wpływ na wynik osób, u których wykryto choroby serca (target=1) mają cechy: cp, oldpeak, exang, ca.\n'
+                '- Wysokie wartości cp zwiększają prawdopodobieństwo pozytywnej klasy.\n'
+                '- Wysokie wartości oldpeak i exang zmniejszają wynik.\n'
+                '- Wysokie wartości ca i thal również zmniejszają wynik, podczas gdy slope działa odwrotnie.\n\n'
+                
+                'Pozostałe cechy (thalach, fbs, restecg, chol, trestbps, sex, age) mają mniejszy wpływ.\n'
+    )

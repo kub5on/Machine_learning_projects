@@ -11,6 +11,7 @@ from sklearn.metrics import silhouette_score
 from umap import UMAP
 import joblib
 import zipfile
+from scipy.cluster.hierarchy import linkage, fcluster
 
 # Ustawienie ziarna losowego dla powtarzalności wyników
 np.random.seed(42)
@@ -34,7 +35,7 @@ scaler = StandardScaler()
 df_scaled = pd.DataFrame(scaler.fit_transform(df_numerical), columns=df_numerical.columns)
 df[df_numerical.columns] = df_scaled
 
-"""klastrowanie danych"""
+"""klastrowanie danych Kmeans"""
 wcss = []
 for i in range(1, 11):
     kmeans = KMeans(n_clusters=i, init="k-means++", max_iter=300, n_init=10, random_state=42)
@@ -62,9 +63,29 @@ kmeans_score = silhouette_score(df_pca, kmeans.labels_)
 umap_model = UMAP(n_components=2, random_state=42)
 df_umap = pd.DataFrame(umap_model.fit_transform(df), columns=["UMAP1", "UMAP2"])
 
-joblib.dump(umap_model, 'umap_model.pkl') # zapisanie plików
-df_umap.to_csv("df_umap.csv", index=False)
+# joblib.dump(umap_model, 'umap_model.pkl') # zapisanie plików
+# df_umap.to_csv("df_umap.csv", index=False)
+#
+# with zipfile.ZipFile('umap.zip', 'w') as zipf: # utworzenie pliku zip
+#     zipf.write('umap_model.pkl')
+#     zipf.write('df_umap.csv')
 
-with zipfile.ZipFile('umap.zip', 'w') as zipf: # utworzenie pliku zip
-    zipf.write('umap_model.pkl')
-    zipf.write('df_umap.csv')
+"""klastrowanie hierarchiczne"""
+link = linkage(df_umap, method='ward')
+df_umap["Hierarchical_Cluster"] = fcluster(link, t=optimal_clusters, criterion='maxclust')
+
+hierarchical_score = silhouette_score(df_umap[["UMAP1", "UMAP2"]], df_umap["Hierarchical_Cluster"])
+
+df_umap['KMeans_Cluster'] = kmeans.fit_predict(df_umap)
+kmeans_score2 = silhouette_score(df_umap, kmeans.labels_)
+
+results = {
+    "Model": ["K-Means (PCA)", "K-Means (UMAP)", "Hierarchical (UMAP)"],
+    "Score": [kmeans_score,
+              kmeans_score2,
+              hierarchical_score]
+}
+
+results_df = pd.DataFrame(results)
+
+# df_pca['KMeans_Cluster'] = kmeans.fit_predict(df_pca)
