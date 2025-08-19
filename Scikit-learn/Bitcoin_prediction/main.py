@@ -39,7 +39,7 @@ y = bitcoin['value']
 ts_split = TimeSeriesSplit(n_splits=5)
 models = {
     'LinearRegression': LinearRegression(),
-    'Lasso (alpha: 0.1)': Lasso(alpha=0.1, random_state=42),
+    'Lasso': Lasso(alpha=0.1, random_state=42),
     'SVR': SVR(C=3, kernel='rbf', epsilon=0.1),
     'KNeighbors': KNeighborsRegressor(n_neighbors=5, weights='distance'),
     'XGBoost': XGBRegressor(max_depth=4, subsample=0.8, random_state=42),
