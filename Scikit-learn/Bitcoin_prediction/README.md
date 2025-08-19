@@ -12,11 +12,11 @@ Models used in comparison:
   - Random Forest
   - XGBoost.
 
-Evaluates performance using R², MAE, and RMSE.
+After predictions program evaluates performance using R², MAE, and RMSE.
 Time series cross-validation ensures proper sequential testing.
 
 ### Dependencies
-Python 3.8+, Pandas, Numpy, Matplotlib, Scikit-learn, Xgboost
+`Python 3.8+`, `Pandas`, `Numpy`, `Matplotlib`, `Scikit-learn`, `Xgboost`
 
 ### How to run
 1. Add _bitcoin.csv_ to the project folder.
