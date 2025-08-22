@@ -21,3 +21,4 @@ This project classifies images from the Fashion MNIST dataset into 10 categories
 5. Run: ```python plots.py``` to visualize dataset `fashion_mnist` and see the training results on the plots (confusion matrix, predictions plots).
 
 
+
