@@ -23,6 +23,7 @@ The dataset is a subset of the [Kaggle Toxic Comment Classification Challenge](h
 2. Add pretrained model `toxic_model.h5` (or train your own by uncommenting the training section in `main.py`).  
 3. Install dependencies: ```pip install -r requirements.txt```
 4. Run: `python main.py` to to evaluate the model, generate predictions, confusion matrices, and optimized thresholds.
-5. Run: `python plots.py` to create training accuracy and confusion matrix plots.
+5. Run: `python plots.py` to create training accuracy plot and confusion matrix file.
+
 
 
