@@ -1,4 +1,4 @@
-## Toxic Comment Classification with BERT
+## Toxic content Classification with BERT
 
 This project detects multiple types of toxic comments using **BERT** for **multi-label classification**. It predicts whether a comment belongs to one or more of the following categories:
 toxic, severe toxic, obscene, threat, insult, identity hate.  
@@ -24,6 +24,7 @@ The dataset is a subset of the [Kaggle Toxic Comment Classification Challenge](h
 3. Install dependencies: ```pip install -r requirements.txt```
 4. Run: `python main.py` to to evaluate the model, generate predictions, confusion matrices, and optimized thresholds.
 5. Run: `python plots.py` to create training accuracy plot and confusion matrix file.
+
 
 
 
