@@ -13,10 +13,12 @@
 `Python 3.9+`, `TensorFlow`, `Keras`, `Pandas`, `NumPy`, `Scikit-learn`, `Keras Tuner`
 
 ## ⚡ Quick Start
-1. Add `sp500.txt`, `model_gru.h5`, `model_lstm.h5` to the project folder.
+1. Add `sp500.txt`, `model_gru.h5`, `model_lstm.h5`, `best_gru.h5`, `best_lstm.h5` to the project folder.
 2. Install dependencies: ```pip install -r requirements.txt```.
-3. 
-4. 
+3. Run: ```python main.py``` to load manually tuned models.
+4. Run: ```python autotuning.py``` to load keras tuned models.
+6. Run: ```python plots.py``` to compare the predictions of the models.
+
 
 
 
