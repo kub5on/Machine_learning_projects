@@ -61,7 +61,7 @@ model_gru = Sequential([
     Dense(1)
 ])
 
-model_gru.compile(optimizer=Adam(learning_rate=0.001), loss='mse')
+# model_gru.compile(optimizer=Adam(learning_rate=0.001), loss='mse')
 # # model_gru.fit(X_train, y_train, epochs=10, batch_size=32)
 # # model_gru.save('model_gru.h5')
 
