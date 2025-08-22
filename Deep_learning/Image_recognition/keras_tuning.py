@@ -67,9 +67,9 @@ tuner = RandomSearch(
     project_name='fashion_mnist_cnn'
 )
 
-tuner.search(X_train, y_train, epochs=3, validation_data=(X_val, y_val))
-best_model = tuner.get_best_models(1)[0]
-best_model.save('best_model.h5')
+# tuner.search(X_train, y_train, epochs=3, validation_data=(X_val, y_val))
+# best_model = tuner.get_best_models(1)[0]
+# best_model.save('best_model.h5')
 
 best_model = tf.keras.models.load_model('best_model.h5')
 

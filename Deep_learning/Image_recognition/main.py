@@ -56,7 +56,7 @@ model = models.Sequential([
 # )
 # model.save('model.h5')
 
-model = tf.keras.models.load_model('best_model.h5')
+model = tf.keras.models.load_model('model.h5')
 test_loss, test_acc = model.evaluate(X_test, y_test, verbose=1)
 
 predictions = model.predict(X_test)

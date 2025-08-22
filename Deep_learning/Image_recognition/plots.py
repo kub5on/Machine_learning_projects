@@ -4,15 +4,15 @@ from sklearn.metrics import confusion_matrix
 import seaborn as sns
 
 """wizualizacja zbioru danych fashion_mnist"""
-# plt.figure(figsize=(8, 8))
-# for i in range(9):
-#     plt.subplot(3, 3, i+1)
-#     plt.imshow(X_train[i], cmap='gray')
-#     plt.title(class_names[y_train[i]])
-#     plt.axis("off")
-# plt.tight_layout()
-# plt.savefig('images.png')
-# plt.show()
+plt.figure(figsize=(8, 8))
+for i in range(9):
+    plt.subplot(3, 3, i+1)
+    plt.imshow(X_train[i], cmap='gray')
+    plt.title(class_names[y_train[i]])
+    plt.axis("off")
+plt.tight_layout()
+plt.savefig('images.png')
+plt.show()
 
 """wykresy z predykcjami"""
 plt.figure(figsize=(12, 12))
