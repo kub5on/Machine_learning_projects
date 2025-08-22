@@ -14,7 +14,7 @@ This project classifies plant seedlings photos using an **MobileNetV2** model. T
 `Python 3.10+`, `TensorFlow`, `Keras`, `FastAPI`, `Streamlit`, `NumPy`, `Pandas`, `Pillow`, `Requests`
 
 ### ⚡ Quick Start
-1. Add `plants_train/` and `plants_test/` folders with images to the project.
+1. Add `plants_train/` and `plants_test/` folders with images to the project folder.
 2. Install dependencies: ```pip install -r requirements.txt```.
 3. Run: ```python main.py``` to train the model.
 4. Run: ```uvicorn app:app --reload``` to start the backend API.
@@ -23,4 +23,5 @@ This project classifies plant seedlings photos using an **MobileNetV2** model. T
 
 ### Possible classes
 Black-grass, Charlock, Cleavers, Common Chickweed, Common wheat, Fat Hen, Loose Silky-bent, Maize, Scentless Mayweed, Shepherd's Purse, Small-flowered Cranesbill, Sugar beet
+
 
