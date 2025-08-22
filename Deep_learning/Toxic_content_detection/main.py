@@ -17,7 +17,7 @@ def build_model():
     attention_mask = tf.keras.Input(shape=(max_len, ), dtype=tf.int32, name="attention_mask")
 
     bert_output = bert(input_ids, attention_mask=attention_mask)[1]
-    x = tf.keras.layers.Dropout(0.3, seed=seed)(bert_output)
+    x = tf.keras.layers.Dropout(0.4, seed=seed)(bert_output)
     x = tf.keras.layers.Dense(
         64,
         activation='leaky_relu',
@@ -97,34 +97,34 @@ model = build_model()
 
 """early stopping"""
 early_stop = tf.keras.callbacks.EarlyStopping(
-    monitor="val_accuracy", patience=2, restore_best_weights=True
+    monitor="val_loss", patience=3, restore_best_weights=True
 )
 
-# """trening modelu"""
-# history = model.fit(
-#     {"input_ids": X_train["input_ids"], "attention_mask": X_train["attention_mask"]},
-#     y_train,
-#     validation_data=(
-#         {"input_ids": X_val["input_ids"], "attention_mask": X_val["attention_mask"]},
-#         y_val
-#     ),
-#     epochs=5,
-#     batch_size=32,
-#     callbacks=[early_stop],
-#     shuffle=False
-# )
-#
-# with open("training_history.json", "w") as f:
-#     json.dump(history.history, f)
-#
-# model.save("toxic_model.h5", include_optimizer=False)
+"""trening modelu"""
+history = model.fit(
+    {"input_ids": X_train["input_ids"], "attention_mask": X_train["attention_mask"]},
+    y_train,
+    validation_data=(
+        {"input_ids": X_val["input_ids"], "attention_mask": X_val["attention_mask"]},
+        y_val
+    ),
+    epochs=10,
+    batch_size=32,
+    callbacks=[early_stop],
+    shuffle=False
+)
+
+with open("training_history.json", "w") as f:
+    json.dump(history.history, f)
+
+model.save("toxic_model.h5", include_optimizer=False)
 
 model = tf.keras.models.load_model(
     "toxic_model.h5", custom_objects={"TFBertModel": TFBertModel}
 )
 
 model.compile(
-    optimizer=tf.keras.optimizers.Adam(learning_rate=2e-5),
+    optimizer=tf.keras.optimizers.Adam(learning_rate=1e-5),
     loss="binary_crossentropy",
     metrics=['accuracy']
 )
