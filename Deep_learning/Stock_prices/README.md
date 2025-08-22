@@ -1,6 +1,6 @@
 ## Predicting stock prices with hyperparameter tuning
 
-This project predicts future S&P 500 stock prices using **LSTM and GRU models** with **hyperparameter tuning** using _Keras Tuner_. It is used to find the optimal number of units and dropout rates for each model to improve forecasting accuracy.
+"This project predicts future S&P 500 stock prices using LSTM and GRU models, with hyperparameter tuning using Keras Tuner to find the optimal number of units and dropout rates for each model. Pretrained models (`model_lstm.h5` and `model_gru.h5`) and tuned models (`best_lstm.h5` and `best_gru.h5`) are provided. In `main.py` and `autotuning.py`, the training sections are commented out.
 
 ## Features
 - **LSTM & GRU Models:** Sequential models with multiple layers, Dropout, and Batch Normalization.
@@ -13,9 +13,11 @@ This project predicts future S&P 500 stock prices using **LSTM and GRU models** 
 `Python 3.9+`, `TensorFlow`, `Keras`, `Pandas`, `NumPy`, `Scikit-learn`, `Keras Tuner`
 
 ## ⚡ Quick Start
-1. Add `sp500.txt` (historical S&P 500 data) to the project folder.
-2. Install dependencies: ```pip install -r requirements.txt```
+1. Add `sp500.txt`, `model_gru.h5`, `model_lstm.h5` to the project folder.
+2. Install dependencies: ```pip install -r requirements.txt```.
 3. 
+4. 
+
 
 
 
