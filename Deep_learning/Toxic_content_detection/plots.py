@@ -1,5 +1,7 @@
 import matplotlib.pyplot as plt
 import json
+from sklearn.metrics import multilabel_confusion_matrix
+from main import y_pred, y_test
 
 with open("training_history.json", mode='r', encoding='UTF-8') as file:
     history = json.load(file)
@@ -18,3 +20,10 @@ plt.ylabel('Accuracy')
 plt.legend()
 plt.savefig('training_accuracy.png')
 plt.show()
+
+'''confusion matrix'''
+cm = multilabel_confusion_matrix(y_test, y_pred)
+
+for i, matrix in enumerate(cm):
+    with open('confusion_matrix.txt', mode='a', encoding='UTF-8') as f:
+        f.write(f"Klasa {i}:\n{matrix}\n")

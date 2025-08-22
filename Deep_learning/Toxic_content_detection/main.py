@@ -39,17 +39,17 @@ def build_model():
     return model
 
 
-# 1. Stała wartość seed
+# Stała wartość seed
 seed = 42
 
-# 2. Ustawienie seedów dla reprodukowalności
+# Ustawienie seedów dla reprodukowalności
 os.environ["PYTHONHASHseed"] = str(seed)
 random.seed(seed)
 np.random.seed(seed)
 tf.random.set_seed(seed)
 keras.utils.set_random_seed(seed)
 
-# 3. Wymuszenie deterministycznych operacji w TensorFlow
+# Wymuszenie deterministycznych operacji w TensorFlow
 os.environ["TF_DETERMINISTIC_OPS"] = "1"
 tf.config.experimental.enable_op_determinism()
 
@@ -100,24 +100,24 @@ early_stop = tf.keras.callbacks.EarlyStopping(
     monitor="val_loss", patience=3, restore_best_weights=True
 )
 
-"""trening modelu"""
-history = model.fit(
-    {"input_ids": X_train["input_ids"], "attention_mask": X_train["attention_mask"]},
-    y_train,
-    validation_data=(
-        {"input_ids": X_val["input_ids"], "attention_mask": X_val["attention_mask"]},
-        y_val
-    ),
-    epochs=10,
-    batch_size=32,
-    callbacks=[early_stop],
-    shuffle=False
-)
-
-with open("training_history.json", "w") as f:
-    json.dump(history.history, f)
-
-model.save("toxic_model.h5", include_optimizer=False)
+# """trening modelu"""
+# history = model.fit(
+#     {"input_ids": X_train["input_ids"], "attention_mask": X_train["attention_mask"]},
+#     y_train,
+#     validation_data=(
+#         {"input_ids": X_val["input_ids"], "attention_mask": X_val["attention_mask"]},
+#         y_val
+#     ),
+#     epochs=10,
+#     batch_size=32,
+#     callbacks=[early_stop],
+#     shuffle=False
+# )
+#
+# with open("training_history.json", "w") as f:
+#     json.dump(history.history, f)
+#
+# model.save("toxic_model.h5", include_optimizer=False)
 
 model = tf.keras.models.load_model(
     "toxic_model.h5", custom_objects={"TFBertModel": TFBertModel}
@@ -137,13 +137,6 @@ loss, acc = model.evaluate(
 y_pred_probs = model.predict({"input_ids": X_test["input_ids"], "attention_mask": X_test["attention_mask"]})
 
 y_pred = (y_pred_probs > 0.5).astype(int)
-
-cm = multilabel_confusion_matrix(y_test, y_pred)
-
-for i, matrix in enumerate(cm):
-    with open('confusion_matrix.txt', mode='a', encoding='UTF-8') as f:
-        f.write(f"Klasa {i}:\n{matrix}\n")
-
 
 y_val_probs = model.predict({"input_ids": X_val["input_ids"], "attention_mask": X_val["attention_mask"]})
 
@@ -167,7 +160,7 @@ y_test_pred = np.zeros_like(y_pred_probs, dtype=np.int8)
 for i in range(6):
     y_test_pred[:, i] = (y_preds_probs[:, i] > best_thresholds[i]).astype(np.int8)
 
-cm = multilabel_confusion_matrix(y_test, y_test_pred)
-
-for i, matrix in enumerate(cm):
-    print(f"Klasa {i}:\n{matrix}\n")
+# cm = multilabel_confusion_matrix(y_test, y_test_pred)
+#
+# for i, matrix in enumerate(cm):
+#     print(f"Klasa {i}:\n{matrix}\n")
