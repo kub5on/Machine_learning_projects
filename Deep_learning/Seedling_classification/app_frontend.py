@@ -15,7 +15,7 @@ if uploaded_file is not None:
             "file": (uploaded_file.name, uploaded_file, uploaded_file.type)
         }
         with st.spinner("Przetwarzanie..."):
-            response = requests.post("http://localhost:8501/predict", files=files)
+            response = requests.post("http://localhost:8000/predict", files=files)
 
         if response.status_code == 200:
             data = response.json()
