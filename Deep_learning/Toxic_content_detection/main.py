@@ -141,7 +141,7 @@ y_pred = (y_pred_probs > 0.5).astype(int)
 cm = multilabel_confusion_matrix(y_test, y_pred)
 
 for i, matrix in enumerate(cm):
-    with open('macierz_pomylek.txt', mode='a', encoding='UTF-8') as f:
+    with open('confusion_matrix.txt', mode='a', encoding='UTF-8') as f:
         f.write(f"Klasa {i}:\n{matrix}\n")
 
 
