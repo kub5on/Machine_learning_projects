@@ -36,15 +36,15 @@ class_names = [
 ]
 
 "tworzenie modelu sekwencyjnego z CNN"
-# model = models.Sequential([
-#     layers.Conv2D(32, (3, 3), activation='leaky_relu', input_shape=(28, 28, 1)),
-#     layers.MaxPooling2D((2, 2)),
-#     layers.Conv2D(64, (3, 3), activation='leaky_relu'),
-#     layers.MaxPooling2D((2, 2)),
-#     layers.Flatten(),
-#     layers.Dense(64, activation='leaky_relu'),
-#     layers.Dense(10, activation='softmax')
-# ])
+model = models.Sequential([
+    layers.Conv2D(32, (3, 3), activation='leaky_relu', input_shape=(28, 28, 1)),
+    layers.MaxPooling2D((2, 2)),
+    layers.Conv2D(64, (3, 3), activation='leaky_relu'),
+    layers.MaxPooling2D((2, 2)),
+    layers.Flatten(),
+    layers.Dense(64, activation='leaky_relu'),
+    layers.Dense(10, activation='softmax')
+])
 #
 # """kompilacja i trening modelu"""
 # model.compile(optimizer='adam', metrics=['accuracy'], loss='sparse_categorical_crossentropy')
