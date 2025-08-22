@@ -25,7 +25,8 @@ This project classifies plant seedlings photos using an **MobileNetV2** model. T
 ### Possible classes
 Black-grass, Charlock, Cleavers, Common Chickweed, Common wheat, Fat Hen, Loose Silky-bent, Maize, Scentless Mayweed, Shepherd's Purse, Small-flowered Cranesbill, Sugar beet
 
-Link to open this app soon ...
+[![Open App](https://img.shields.io/badge/Open-App-blue?style=for-the-badge&logo=appveyor)]
+
 
 
 
