@@ -11,8 +11,7 @@ toxic, severe toxic, obscene, threat, insult, identity hate.
 - **Pretrained Model:** Saved as `toxic_model.h5`.  
 
 ### Dataset 📁
-The dataset is a subset of the [Kaggle Toxic Comment Classification Challenge](https://www.kaggle.com/c/jigsaw-toxic-comment-classification-challenge).  
-It is loaded from `toxic_subset.csv` and contains two parts:  
+The dataset is a subset of the [Kaggle Toxic Comment Classification Challenge](https://www.kaggle.com/c/jigsaw-toxic-comment-classification-challenge). It is loaded from `toxic_subset.csv` and contains two parts:  
 - `comment_text` → input (text)  
 - six binary columns → labels  
 
@@ -23,3 +22,4 @@ It is loaded from `toxic_subset.csv` and contains two parts:
 1. Add the dataset file `toxic_subset.csv` to the project folder.  
 2. Add pretrained model `toxic_model.h5` (or train your own by uncommenting the training section in `main.py`).  
 3. Install dependencies: ```pip install -r requirements.txt```
+
