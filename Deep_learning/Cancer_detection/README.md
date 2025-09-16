@@ -18,3 +18,4 @@ It uses a **sequential deep learning model** with 3 hidden layers (256 â†’ 128 â
 3. Run : ```python main.py```
 4. Run: ```python plots.py```
 5. Check the output metrics and all plots for model performance comparison.
+
